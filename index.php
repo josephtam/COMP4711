@@ -4,6 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" context="text/html; charset=UTF-8"> 
     <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" type="text/css" href="Styles/style.css">
   </head>
   <body>
     <h1>Tic-Tac-Toe Game</h1>
@@ -18,18 +19,18 @@
         $game->display();
       } else {
         if($game->pick_move() == -1) {
-          echo 'A Tie!';
+          echo '<div class="msg">A Tie!</div>';
         } else if($game->winner('x')) {
-          echo 'You win!';
+          echo '<div class="msg">You win!</div>';
         } else if($game->winner('o')) {
-          echo 'I win!';
+          echo '<div class="msg">I win!</div>';
         } else {
           $game->display();
         }
       }  
     ?>
     <br />
-    <a href="/COMP4711">Restart Game</a>
+    <div id="restart"><a href="/COMP4711">Restart Game</a></div>
   </body>
 </html>
 
@@ -42,7 +43,7 @@
     
     /* Displays the tic tac toe grid */
     function display() {
-      echo '<table cols="3" style="font-size:large; font-weight:bold; width:25%;">';
+      echo '<table cols="3" style="font-size:large; font-weight:bold;">';
       echo '<tr>';
       for($pos = 0; $pos < 9; $pos++) {
         echo $this->show_cell($pos);
@@ -65,7 +66,7 @@
       $move = implode($this->newposition); // make a string from the board array
       $link = '/COMP4711?board=' . $move; // this is what we want the link to be
       // so return a cell containing an anchor and showing a hyphen
-      return '<td><a href="' . $link . '">-</a></td>';
+      return '<td><a class="cell" href="' . $link . '">-</a></td>';
     }
     
     /*

@@ -1,0 +1,30 @@
+td {
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-size: 50px;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a.cell:link {
+    text-decoration: none;
+}
+
+#restart {
+    text-align: center;
+    font-size: 30px;
+}
+
+.msg {
+    text-align: center;
+    font-size: 50px;
+}
