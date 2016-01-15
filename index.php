@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-
-
 <html>
   <head>
     <meta http-equiv="Content-Type" context="text/html; charset=UTF-8"> 
@@ -42,6 +40,7 @@
       $this->position = str_split($squares);
     }
     
+    /* Displays the tic tac toe grid */
     function display() {
       echo '<table cols="3" style="font-size:large; font-weight:bold; width:25%;">';
       echo '<tr>';
@@ -53,10 +52,13 @@
       echo '</table>';
     }
     
+    /* Processes the contents of each table cell */
     function show_cell($which) {
       $token = $this->position[$which];
       //deal with the easy case
-      if($token <> '-') return '<td>' . $token . '</td>';
+      if($token <> '-') {
+        return '<td>' . $token . '</td>';
+      }
       //now the hard one
       $this->newposition = $this->position; // copy the original
       $this->newposition[$which] = 'x'; // this would be their move
@@ -66,6 +68,10 @@
       return '<td><a href="' . $link . '">-</a></td>';
     }
     
+    /*
+     * Checks all possible winning areas on the grid and to determine if the 
+     * player is about to win
+     */
     function can_win($pos1, $pos2, $pos3) {
       $xCount = 0;
       $mtCount = 0;
@@ -100,10 +106,12 @@
           $mtPos = $pos3;
         }
       }
-
       return $mtPos;
     }
     
+    /* Prevents the player from winning if possible, otherwise fills the next
+     * available position
+     */
     function pick_move() {
       for($row = 0; $row < 3; $row++) {
         if(($pos = $this->can_win(3 * $row, 3 * $row + 1, 3 * $row + 2)) != -1) {
@@ -138,6 +146,9 @@
       return -1;
     }
     
+    /*
+     * Checks to see if there is a winner
+     */
     function winner($token) {
       $won = false;
       for($row = 0; $row < 3; $row++) {
